@@ -22,25 +22,25 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBody: true,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        toolbarHeight: 0.0,
-        elevation: 0.0,
+        toolbarHeight: 0,
+        elevation: 0,
         backgroundColor: Theme.of(context).backgroundColor,
       ),
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 6.0),
+            padding: const EdgeInsets.fromLTRB(15, 40, 15, 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const _ScreenHeading(),
-                const SizedBox(height: 32.0),
+                const SizedBox(height: 32),
                 _PlaylistTiles(),
-                const SizedBox(height: 14.0),
+                const SizedBox(height: 14),
                 const _ScreenEngagement(),
-                const SizedBox(height: 40.0),
+                const SizedBox(height: 40),
                 const _EngagementButton(),
-                const SizedBox(height: 12.0),
+                const SizedBox(height: 12),
               ],
             ),
           ),
@@ -81,15 +81,15 @@ class _ScreenHeading extends StatelessWidget {
           children: [
             Text('🔥', style: style),
             Container(
-              height: 30.0,
-              width: 30.0,
+              height: 30,
+              width: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
                     offset: const Offset(0, 5),
                     color: AppColors.orange.withOpacity(0.4),
-                    blurRadius: 14.0,
+                    blurRadius: 14,
                   ),
                 ],
               ),
@@ -116,7 +116,7 @@ class _ScreenEngagement extends StatelessWidget {
           style: Theme.of(context).textTheme.headline2,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 8),
         Text(
           'In the meantime join our discord.',
           textAlign: TextAlign.center,
@@ -135,7 +135,7 @@ class _EngagementButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(0.7),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(56.0),
+        borderRadius: BorderRadius.circular(56),
         gradient: const LinearGradient(
           colors: [
             AppColors.orange,
@@ -147,22 +147,22 @@ class _EngagementButton extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(56.0),
+          borderRadius: BorderRadius.circular(5),
           color: Colors.black,
         ),
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(56.0),
-            padding: const EdgeInsets.all(0.0),
+            minimumSize: const Size.fromHeight(56),
+            padding: const EdgeInsets.all(0),
             primary: AppColors.orange.withOpacity(0.5),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(56.0),
+              borderRadius: BorderRadius.circular(56),
             ),
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(56.0),
+              borderRadius: BorderRadius.circular(56),
               gradient: const LinearGradient(
                 colors: [Colors.transparent, Colors.black],
                 begin: Alignment.topCenter,
@@ -172,10 +172,10 @@ class _EngagementButton extends StatelessWidget {
             ),
             child: Container(
               width: double.infinity,
-              height: 56.0,
+              height: 56,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(56.0),
+                borderRadius: BorderRadius.circular(56),
                 gradient: LinearGradient(
                   colors: [
                     Colors.transparent,
@@ -191,15 +191,15 @@ class _EngagementButton extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     'assets/images/discord.svg',
-                    width: 24.0,
-                    height: 24.0,
+                    width: 24,
+                    height: 24,
                   ),
-                  const SizedBox(width: 9.0),
+                  const SizedBox(width: 9),
                   const Text(
                     'Join Metaview Discord',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 17.0,
+                      fontSize: 17,
                       height: 1.3,
                       fontWeight: FontWeight.w500,
                     ),
@@ -254,7 +254,7 @@ class _PlaylistTiles extends StatelessWidget {
         return Column(
           children: [
             tile,
-            const SizedBox(height: 32.0),
+            const SizedBox(height: 32),
           ],
         );
       }).toList(),

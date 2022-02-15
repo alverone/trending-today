@@ -42,24 +42,30 @@ class PlaylistTile extends StatelessWidget {
                     image: AssetImage(imageSrc),
                   ),
                   Positioned(
-                    right: 20.0,
-                    bottom: -32.0,
+                    right: 20,
+                    bottom: -32,
                     child: _PlayButton(),
                   ),
                 ],
               ),
-              const SizedBox(height: 16.0),
-              _TileText(
-                name: name,
-                videosNew: videosNew,
-                videosTotal: videosTotal,
-                videosWatched: videosWatched,
-              ),
-              const SizedBox(height: 16.0),
-              _PlaylistProgressionBar(
-                watched: videosWatched,
-                total: videosTotal,
-              ),
+              const SizedBox(height: 16),
+              Padding(
+                  padding: const EdgeInsets.only(right: 12, left: 12),
+                  child: Column(
+                    children: [
+                      _TileText(
+                        name: name,
+                        videosNew: videosNew,
+                        videosTotal: videosTotal,
+                        videosWatched: videosWatched,
+                      ),
+                      const SizedBox(height: 16),
+                      _PlaylistProgressionBar(
+                        watched: videosWatched,
+                        total: videosTotal,
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
@@ -84,7 +90,7 @@ class _GradientBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(56.0),
+        borderRadius: BorderRadius.circular(32),
         gradient: const LinearGradient(
           colors: [
             Colors.white24,
@@ -96,16 +102,16 @@ class _GradientBorder extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: dropShadowColor.withOpacity(0.6),
-            spreadRadius: 1.0,
-            blurRadius: 20.0,
-            offset: const Offset(-8.0, -8.0),
+            spreadRadius: 1,
+            blurRadius: 20,
+            offset: const Offset(-8, -8),
           ),
         ],
       ),
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(56.0),
+          borderRadius: BorderRadius.circular(32),
           gradient: RadialGradient(
             center: Alignment.topLeft,
             colors: [
@@ -114,7 +120,7 @@ class _GradientBorder extends StatelessWidget {
             ],
           ),
         ),
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(1),
         child: child,
       ),
     );
@@ -135,12 +141,12 @@ class _InnerShadow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(56.0),
+        borderRadius: BorderRadius.circular(32),
         color: Theme.of(context).backgroundColor,
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(56.0),
+          borderRadius: BorderRadius.circular(32),
           gradient: RadialGradient(
             center: Alignment.topLeft,
             radius: 1.5,
@@ -152,7 +158,7 @@ class _InnerShadow extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(56.0),
+            borderRadius: BorderRadius.circular(32),
             gradient: const RadialGradient(
               radius: 16,
               colors: [
@@ -179,16 +185,16 @@ class _InnerBlur extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(56.0),
+      borderRadius: BorderRadius.circular(32),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 100.0,
-          sigmaY: 100.0,
+          sigmaX: 100,
+          sigmaY: 100,
         ),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 24.0),
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(56.0),
+            borderRadius: BorderRadius.circular(32),
             color: Colors.white.withOpacity(0.075),
           ),
           child: child,
@@ -219,52 +225,48 @@ class _TileText extends StatelessWidget {
     final greySubtextNumbers =
         subtextStyle?.copyWith(color: AppColors.subtextCount);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: Theme.of(context).textTheme.headline3,
-          ),
-          const SizedBox(height: 2.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '+$videosNew New Videos',
-                style: (videosWatched == videosTotal)
-                    ? greySubtextVideos
-                    : subtextStyle,
-              ),
-              Row(
-                //crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 12.0,
-                    height: 12.0,
-                    margin: const EdgeInsets.fromLTRB(0.0, 3.0, 3.0, 1.0),
-                    child: SvgPicture.asset(
-                      'assets/images/eye_icon.svg',
-                      color: (videosWatched == 0)
-                          ? AppColors.orange
-                          : AppColors.subtextCount,
-                    ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          name,
+          style: Theme.of(context).textTheme.headline3,
+        ),
+        const SizedBox(height: 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              '+$videosNew New Videos',
+              style: (videosWatched == videosTotal)
+                  ? greySubtextVideos
+                  : subtextStyle,
+            ),
+            Row(
+              //crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: 12,
+                  height: 12,
+                  margin: const EdgeInsets.fromLTRB(0, 3, 3, 1),
+                  child: SvgPicture.asset(
+                    'assets/images/eye_icon.svg',
+                    color: (videosWatched == 0)
+                        ? AppColors.orange
+                        : AppColors.subtextCount,
                   ),
-                  Text(
-                    '$videosWatched/$videosTotal',
-                    style: (videosWatched == 0)
-                        ? subtextStyle
-                        : greySubtextNumbers,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
+                ),
+                Text(
+                  '$videosWatched/$videosTotal',
+                  style:
+                      (videosWatched == 0) ? subtextStyle : greySubtextNumbers,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -272,20 +274,20 @@ class _TileText extends StatelessWidget {
 class _PlayButton extends StatelessWidget {
   _PlayButton({Key? key}) : super(key: key);
 
-  final BorderRadius _radius = BorderRadius.circular(100.0);
+  final BorderRadius _radius = BorderRadius.circular(100);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: 64.0,
-        height: 64.0,
+        width: 64,
+        height: 64,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: _radius,
           gradient: RadialGradient(
-            radius: 3.0,
+            radius: 3,
             colors: [
               Colors.transparent,
               Colors.white.withOpacity(0.15),
@@ -295,7 +297,7 @@ class _PlayButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               blurRadius: 8,
-              offset: const Offset(0.0, 12.0),
+              offset: const Offset(0, 12),
               color: Colors.black.withOpacity(0.25),
             ),
           ],
@@ -303,12 +305,12 @@ class _PlayButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius: _radius,
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
-              width: 64.0,
-              height: 64.0,
+              width: 64,
+              height: 64,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32.0),
+                borderRadius: BorderRadius.circular(32),
                 color: Colors.white10,
                 border: Border.all(
                   color: Colors.white.withOpacity(0.2),
@@ -319,7 +321,7 @@ class _PlayButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: _radius,
                   gradient: RadialGradient(
-                    radius: 1.0,
+                    radius: 1,
                     colors: [
                       Colors.transparent,
                       Colors.white.withOpacity(0.15),
@@ -333,15 +335,15 @@ class _PlayButton extends StatelessWidget {
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.white30,
-                        blurRadius: 8.0,
-                        offset: Offset(-2.0, 2.0),
+                        blurRadius: 8,
+                        offset: Offset(-2, 2),
                       ),
                     ],
                   ),
                   child: SvgPicture.asset(
                     'assets/images/play-button.svg',
-                    width: 20.0,
-                    height: 24.0,
+                    width: 20,
+                    height: 24,
                   ),
                 ),
               ),
@@ -384,7 +386,7 @@ class _PlaylistProgressionBar extends StatelessWidget {
       height: 4,
       decoration: BoxDecoration(
         color: Colors.white10,
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: FractionallySizedBox(
         alignment: Alignment.centerLeft,
@@ -396,7 +398,7 @@ class _PlaylistProgressionBar extends StatelessWidget {
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.0),
+                borderRadius: BorderRadius.circular(4),
                 gradient: LinearGradient(
                   colors: [
                     AppColors.orange,
@@ -406,26 +408,26 @@ class _PlaylistProgressionBar extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    offset: const Offset(0.0, 3.0),
+                    offset: const Offset(0, 3),
                     color: AppColors.playlistProgressBarShadow,
-                    blurRadius: 7.0,
+                    blurRadius: 7,
                   ),
                 ],
               ),
             ),
             Positioned(
-              right: -7.0,
-              bottom: -10.0,
+              right: -7,
+              bottom: -10,
               child: Container(
-                width: 16.0,
-                height: 24.0,
+                width: 16,
+                height: 24,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
                       color: shadowColor,
-                      blurRadius: 9.0,
+                      blurRadius: 9,
                     ),
                   ],
                 ),
