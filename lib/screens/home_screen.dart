@@ -76,25 +76,20 @@ class _ScreenHeading extends StatelessWidget {
             ],
           ),
         ),
-        Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            Text('🔥', style: style),
-            Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 5),
-                    color: AppColors.orange.withOpacity(0.4),
-                    blurRadius: 14,
-                  ),
-                ],
+        Container(
+          height: 30,
+          width: 30,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 5),
+                color: AppColors.orange.withOpacity(0.4),
+                blurRadius: 14,
               ),
-            ),
-          ],
+            ],
+          ),
+          child: Text('🔥', style: style),
         ),
       ],
     );

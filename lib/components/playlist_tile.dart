@@ -38,8 +38,16 @@ class PlaylistTile extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Image(
-                    image: AssetImage(imageSrc),
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image(
+                      image: AssetImage(imageSrc),
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                   Positioned(
                     right: 20,
