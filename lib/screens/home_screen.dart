@@ -77,13 +77,13 @@ class _ScreenHeading extends StatelessWidget {
           ),
         ),
         Container(
-          height: 30,
-          width: 30,
+          height: 43,
+          width: 26,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                offset: const Offset(0, 5),
+                offset: const Offset(4, 8),
                 color: AppColors.orange.withOpacity(0.4),
                 blurRadius: 14,
               ),

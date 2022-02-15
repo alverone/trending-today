@@ -16,95 +16,89 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 88.0,
-      width: double.infinity,
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.black.withOpacity(0.9),
-          shadowColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        canvasColor: Colors.black.withOpacity(0.9),
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(24.0),
+          topRight: Radius.circular(24.0),
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(24.0),
-            topRight: Radius.circular(24.0),
-          ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-            child: Stack(
-              children: [
-                BottomNavigationBar(
-                  elevation: 0.0,
-                  backgroundColor: Colors.black.withOpacity(0.9),
-                  type: BottomNavigationBarType.shifting,
-                  onTap: callback,
-                  currentIndex: currentTabIndex,
-                  selectedLabelStyle: const TextStyle(
-                    fontSize: 10.0,
-                    height: 17 / 10,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.orange,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: Stack(
+            children: [
+              BottomNavigationBar(
+                elevation: 0.0,
+                backgroundColor: Colors.black.withOpacity(0.9),
+                type: BottomNavigationBarType.shifting,
+                onTap: callback,
+                currentIndex: currentTabIndex,
+                selectedLabelStyle: const TextStyle(
+                  fontSize: 10.0,
+                  height: 17 / 10,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.orange,
+                ),
+                selectedItemColor: AppColors.orange,
+                unselectedLabelStyle: const TextStyle(fontSize: 8.0),
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: _TabIcon(
+                      iconSource: 'assets/images/tab_hot.svg',
+                      iconActiveSource: 'assets/images/tab_hot_active.svg',
+                      index: currentTabIndex,
+                      match: 0,
+                      type: ImageType.svg,
+                    ),
+                    label: 'Hot',
                   ),
-                  selectedItemColor: AppColors.orange,
-                  unselectedLabelStyle: const TextStyle(fontSize: 8.0),
-                  items: <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                      icon: _TabIcon(
-                        iconSource: 'assets/images/tab_hot.svg',
-                        iconActiveSource: 'assets/images/tab_hot_active.svg',
-                        index: currentTabIndex,
-                        match: 0,
-                        type: ImageType.svg,
-                      ),
-                      label: 'Hot',
+                  BottomNavigationBarItem(
+                    icon: _TabIcon(
+                      iconSource: 'assets/images/tab_discover.svg',
+                      iconActiveSource: 'assets/images/tab_discover_active.svg',
+                      index: currentTabIndex,
+                      match: 1,
+                      type: ImageType.svg,
                     ),
-                    BottomNavigationBarItem(
-                      icon: _TabIcon(
-                        iconSource: 'assets/images/tab_discover.svg',
-                        iconActiveSource:
-                            'assets/images/tab_discover_active.svg',
-                        index: currentTabIndex,
-                        match: 1,
-                        type: ImageType.svg,
-                      ),
-                      label: 'Discover',
+                    label: 'Discover',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: _TabIcon(
+                      iconSource: 'assets/images/tab_home.svg',
+                      iconActiveSource: 'assets/images/tab_home_active.svg',
+                      index: currentTabIndex,
+                      match: 2,
+                      type: ImageType.svg,
                     ),
-                    BottomNavigationBarItem(
-                      icon: _TabIcon(
-                        iconSource: 'assets/images/tab_home.svg',
-                        iconActiveSource: 'assets/images/tab_home_active.svg',
-                        index: currentTabIndex,
-                        match: 2,
-                        type: ImageType.svg,
-                      ),
-                      label: 'Watch',
+                    label: 'Watch',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: _TabIcon(
+                      iconSource: 'assets/images/tab_inbox.svg',
+                      iconActiveSource: 'assets/images/tab_inbox_active.svg',
+                      index: currentTabIndex,
+                      match: 3,
+                      type: ImageType.svg,
                     ),
-                    BottomNavigationBarItem(
-                      icon: _TabIcon(
-                        iconSource: 'assets/images/tab_inbox.svg',
-                        iconActiveSource: 'assets/images/tab_inbox_active.svg',
-                        index: currentTabIndex,
-                        match: 3,
-                        type: ImageType.svg,
-                      ),
-                      label: 'Inbox',
+                    label: 'Inbox',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: _TabIcon(
+                      iconSource: 'assets/images/tab_profile.png',
+                      iconActiveSource: 'assets/images/tab_profile_active.png',
+                      index: currentTabIndex,
+                      match: 4,
+                      type: ImageType.png,
                     ),
-                    BottomNavigationBarItem(
-                      icon: _TabIcon(
-                        iconSource: 'assets/images/tab_profile.png',
-                        iconActiveSource:
-                            'assets/images/tab_profile_active.png',
-                        index: currentTabIndex,
-                        match: 4,
-                        type: ImageType.png,
-                      ),
-                      label: 'Profile',
-                    ),
-                  ],
-                )
-              ],
-            ),
+                    label: 'Profile',
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
