@@ -31,5 +31,7 @@ flutter:
     - family: Aktiv Grotesk
       fonts:
         - asset: fonts/AktivGroteskRegular.ttf
+        - asset: fonts/AktivGroteskMedium.ttf
+          weight: 500
         - asset: fonts/AktivGroteskBold.ttf
           weight: 700

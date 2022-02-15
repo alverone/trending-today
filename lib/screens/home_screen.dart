@@ -32,15 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.fromLTRB(15, 40, 15, 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const _ScreenHeading(),
-                const SizedBox(height: 32),
+              children: const <Widget>[
+                _ScreenHeading(),
+                SizedBox(height: 32),
                 _PlaylistTiles(),
-                const SizedBox(height: 14),
-                const _ScreenEngagement(),
-                const SizedBox(height: 40),
-                const _EngagementButton(),
-                const SizedBox(height: 12),
+                SizedBox(height: 14),
+                _ScreenEngagement(),
+                SizedBox(height: 40),
+                _EngagementButton(),
+                SizedBox(height: 12),
               ],
             ),
           ),
@@ -147,7 +147,7 @@ class _EngagementButton extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(56),
           color: Colors.black,
         ),
         child: ElevatedButton(
@@ -215,7 +215,7 @@ class _EngagementButton extends StatelessWidget {
 }
 
 class _PlaylistTiles extends StatelessWidget {
-  _PlaylistTiles({Key? key}) : super(key: key);
+  const _PlaylistTiles({Key? key}) : super(key: key);
 
   final List<PlaylistTile> tiles = const [
     PlaylistTile(

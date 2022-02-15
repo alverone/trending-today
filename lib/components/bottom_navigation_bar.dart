@@ -42,7 +42,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   currentIndex: currentTabIndex,
                   selectedLabelStyle: const TextStyle(
                     fontSize: 10.0,
-                    height: 1.3,
+                    height: 17 / 10,
                     fontWeight: FontWeight.w500,
                     color: AppColors.orange,
                   ),
@@ -132,20 +132,21 @@ class _TabIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool hasMatched = (index == match);
     final Color navigationShadow =
-        hasMatched ? AppColors.navigationShadow : Colors.transparent;
+        hasMatched ? AppColors.orange.withOpacity(0.60) : Colors.transparent;
 
     return Stack(
       clipBehavior: Clip.none,
       alignment: AlignmentDirectional.center,
       children: [
         Container(
-          width: 20.0,
-          height: 20.0,
+          width: 16.0,
+          height: 16.0,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                blurRadius: 10.0,
+                offset: const Offset(0, 3),
+                blurRadius: 10,
                 color: navigationShadow,
               )
             ],
@@ -158,15 +159,15 @@ class _TabIcon extends StatelessWidget {
           type: type,
         ),
         Positioned(
-          top: 40.0,
+          top: 40,
           child: Container(
-            width: 160.0,
-            height: 160.0,
+            width: 160,
+            height: 160,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 24.0,
+                  blurRadius: 20,
                   color: hasMatched
                       ? AppColors.orange.withOpacity(0.17)
                       : Colors.transparent,
@@ -197,28 +198,18 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (type == ImageType.svg) {
-      return Column(
-        children: [
-          SvgPicture.asset(
-            match ? iconActiveSource : iconSource,
-            width: 24.0,
-            height: 24.0,
-          ),
-          const SizedBox(height: 2.0),
-        ],
+      return SvgPicture.asset(
+        match ? iconActiveSource : iconSource,
+        width: 24.0,
+        height: 24.0,
       );
     } else {
-      return Column(
-        children: [
-          Image(
-            image: AssetImage(
-              match ? iconActiveSource : iconSource,
-            ),
-            width: 24.0,
-            height: 24.0,
-          ),
-          const SizedBox(height: 2.0),
-        ],
+      return Image(
+        image: AssetImage(
+          match ? iconActiveSource : iconSource,
+        ),
+        width: 24.0,
+        height: 24.0,
       );
     }
   }
