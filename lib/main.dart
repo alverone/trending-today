@@ -14,6 +14,8 @@ class App extends StatelessWidget {
       title: 'Trending today',
       theme: theme,
       home: const HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: true,
     );
   }
 }

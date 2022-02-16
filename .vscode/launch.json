@@ -13,7 +13,16 @@
 			"name": "trending_today (profile mode)",
 			"request": "launch",
 			"type": "dart",
-			"flutterMode": "debug"
+			"flutterMode": "profile"
+		},
+		{
+			"name": "trending_today (profile mode with shader caching)",
+			"request": "launch",
+			"type": "dart",
+			"flutterMode": "profile",
+			"args": [
+				"--cache-sksl", "--purge-persistent-cache"
+			]
 		}
 	]
 }

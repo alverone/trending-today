@@ -58,22 +58,23 @@ class PlaylistTile extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Padding(
-                  padding: const EdgeInsets.only(right: 12, left: 12),
-                  child: Column(
-                    children: [
-                      _TileText(
-                        name: name,
-                        videosNew: videosNew,
-                        videosTotal: videosTotal,
-                        videosWatched: videosWatched,
-                      ),
-                      const SizedBox(height: 16),
-                      _PlaylistProgressionBar(
-                        watched: videosWatched,
-                        total: videosTotal,
-                      ),
-                    ],
-                  )),
+                padding: const EdgeInsets.only(right: 12, left: 12),
+                child: Column(
+                  children: [
+                    _TileText(
+                      name: name,
+                      videosNew: videosNew,
+                      videosTotal: videosTotal,
+                      videosWatched: videosWatched,
+                    ),
+                    const SizedBox(height: 16),
+                    _PlaylistProgressionBar(
+                      watched: videosWatched,
+                      total: videosTotal,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -117,7 +118,7 @@ class _GradientBorder extends StatelessWidget {
         ],
       ),
       child: Container(
-        clipBehavior: Clip.hardEdge,
+        //clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
           gradient: RadialGradient(
@@ -217,64 +218,82 @@ class _TileText extends StatelessWidget {
   final int videosWatched;
   final int videosTotal;
   final int videosNew;
+  late final TextStyle greySubtextVideos;
+  late final TextStyle greySubtextNumbers;
+  late final TextStyle subtextStyle;
+  late final MediaQueryData windowData;
 
-  const _TileText({
+  _TileText({
     Key? key,
     required this.name,
     required this.videosWatched,
     required this.videosTotal,
     required this.videosNew,
-  }) : super(key: key);
+  }) : super(key: key) {
+    subtextStyle = const TextStyle(
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500,
+      height: 16 / 12,
+      color: AppColors.orange,
+    );
+    greySubtextVideos = subtextStyle.copyWith(color: AppColors.subtext);
+    greySubtextNumbers = subtextStyle.copyWith(color: AppColors.subtextCount);
+    windowData = MediaQueryData.fromWindow(window);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final subtextStyle = Theme.of(context).textTheme.bodyText2;
-    final greySubtextVideos = subtextStyle?.copyWith(color: AppColors.subtext);
-    final greySubtextNumbers =
-        subtextStyle?.copyWith(color: AppColors.subtextCount);
+    final scaleFactor = windowData.textScaleFactor;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          name,
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        const SizedBox(height: 2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '+$videosNew New Videos',
-              style: (videosWatched == videosTotal)
-                  ? greySubtextVideos
-                  : subtextStyle,
-            ),
-            Row(
-              //crossAxisAlignment: CrossAxisAlignment.end,
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            name,
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          const SizedBox(height: 2),
+          Container(
+            width: double.infinity,
+            child: Wrap(
+              direction: Axis.horizontal,
+              //crossAxisAlignment: WrapCrossAlignment.start,
+              alignment: WrapAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 12,
-                  height: 12,
-                  margin: const EdgeInsets.fromLTRB(0, 3, 3, 1),
-                  child: SvgPicture.asset(
-                    'assets/images/eye_icon.svg',
-                    color: (videosWatched == 0)
-                        ? AppColors.orange
-                        : AppColors.subtextCount,
-                  ),
-                ),
                 Text(
-                  '$videosWatched/$videosTotal',
-                  style:
-                      (videosWatched == 0) ? subtextStyle : greySubtextNumbers,
+                  '+$videosNew New Videos',
+                  style: (videosWatched == videosTotal)
+                      ? greySubtextVideos
+                      : subtextStyle,
+                ),
+                Wrap(
+                  children: [
+                    Container(
+                      width: 12 * scaleFactor,
+                      height: 12 * scaleFactor,
+                      margin: const EdgeInsets.fromLTRB(0, 3, 3, 1),
+                      child: SvgPicture.asset(
+                        'assets/images/eye_icon.svg',
+                        color: (videosWatched == 0)
+                            ? AppColors.orange
+                            : AppColors.subtextCount,
+                      ),
+                    ),
+                    Text(
+                      '$videosWatched/$videosTotal',
+                      style: (videosWatched == 0)
+                          ? subtextStyle
+                          : greySubtextNumbers,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'dart:ui';
 
 import '../theme/colors.dart';
 import '../components/bottom_navigation_bar.dart';
@@ -21,13 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: Theme.of(context).backgroundColor,
-      extendBodyBehindAppBar: true,
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 40, 15, 6),
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 _ScreenHeading(),
                 SizedBox(height: 32),
                 PlaylistTile(
@@ -80,7 +80,19 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _ScreenHeading extends StatelessWidget {
-  const _ScreenHeading({Key? key}) : super(key: key);
+  late final MediaQueryData mediaQuery;
+  late final double textScaleSize;
+
+  _ScreenHeading({Key? key}) : super(key: key) {
+    mediaQuery = MediaQueryData.fromWindow(window);
+    final double scaleFactor = mediaQuery.textScaleFactor;
+
+    if (scaleFactor <= 1.25) {
+      textScaleSize = scaleFactor;
+    } else if (scaleFactor > 1.25) {
+      textScaleSize = 1.25;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +104,7 @@ class _ScreenHeading extends StatelessWidget {
         GradientText(
           'Trending Today ',
           style: style,
+          textScaleFactor: textScaleSize,
           gradient: const LinearGradient(
             colors: [
               AppColors.orange,
@@ -100,8 +113,8 @@ class _ScreenHeading extends StatelessWidget {
           ),
         ),
         Container(
-          height: 43,
-          width: 26,
+          height: 43 * textScaleSize,
+          width: 26 * textScaleSize,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
@@ -112,7 +125,11 @@ class _ScreenHeading extends StatelessWidget {
               ),
             ],
           ),
-          child: Text('🔥', style: style),
+          child: Text(
+            '🔥',
+            textScaleFactor: textScaleSize,
+            style: style,
+          ),
         ),
       ],
     );
@@ -190,7 +207,8 @@ class _EngagementButton extends StatelessWidget {
             ),
             child: Container(
               width: double.infinity,
-              height: 56,
+              padding: const EdgeInsets.only(top: 16, bottom: 16),
+              constraints: BoxConstraints(maxWidth: double.infinity),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(56),
@@ -215,11 +233,13 @@ class _EngagementButton extends StatelessWidget {
                   const SizedBox(width: 9),
                   const Text(
                     'Join Metaview Discord',
+                    textScaleFactor: 1,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
                       height: 1.3,
                       fontWeight: FontWeight.w500,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
