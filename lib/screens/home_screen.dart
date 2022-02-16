@@ -21,22 +21,45 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        toolbarHeight: 0,
-        elevation: 0,
-        backgroundColor: Theme.of(context).backgroundColor,
-      ),
+      extendBodyBehindAppBar: true,
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 40, 15, 6),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: const <Widget>[
                 _ScreenHeading(),
                 SizedBox(height: 32),
-                _PlaylistTiles(),
-                SizedBox(height: 14),
+                PlaylistTile(
+                  name: 'FGC Rumble',
+                  videosTotal: 18,
+                  videosNew: 18,
+                  videosWatched: 0,
+                  imageSrc: 'assets/images/fgc_rumble.png',
+                  mainColor: AppColors.purple,
+                  dropShadowColor: AppColors.purpleShadow,
+                ),
+                SizedBox(height: 32),
+                PlaylistTile(
+                  name: 'Smash Stockpile',
+                  videosTotal: 30,
+                  videosNew: 10,
+                  videosWatched: 15,
+                  imageSrc: 'assets/images/smash_stockpile.png',
+                  mainColor: AppColors.orange,
+                  dropShadowColor: AppColors.orangeShadow,
+                ),
+                SizedBox(height: 32),
+                PlaylistTile(
+                  name: 'Valorant Volume',
+                  videosTotal: 21,
+                  videosNew: 21,
+                  videosWatched: 21,
+                  imageSrc: 'assets/images/valorant_volume.png',
+                  mainColor: AppColors.red,
+                  dropShadowColor: AppColors.redShadow,
+                ),
+                SizedBox(height: 46),
                 _ScreenEngagement(),
                 SizedBox(height: 40),
                 _EngagementButton(),
@@ -205,54 +228,6 @@ class _EngagementButton extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _PlaylistTiles extends StatelessWidget {
-  const _PlaylistTiles({Key? key}) : super(key: key);
-
-  final List<PlaylistTile> tiles = const [
-    PlaylistTile(
-      name: 'FGC Rumble',
-      videosTotal: 18,
-      videosNew: 18,
-      videosWatched: 0,
-      imageSrc: 'assets/images/fgc_rumble.png',
-      mainColor: AppColors.purple,
-      dropShadowColor: AppColors.purpleShadow,
-    ),
-    PlaylistTile(
-      name: 'Smash Stockpile',
-      videosTotal: 30,
-      videosNew: 10,
-      videosWatched: 15,
-      imageSrc: 'assets/images/smash_stockpile.png',
-      mainColor: AppColors.orange,
-      dropShadowColor: AppColors.orangeShadow,
-    ),
-    PlaylistTile(
-      name: 'Valorant Volume',
-      videosTotal: 21,
-      videosNew: 21,
-      videosWatched: 21,
-      imageSrc: 'assets/images/valorant_volume.png',
-      mainColor: AppColors.red,
-      dropShadowColor: AppColors.redShadow,
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: tiles.map((tile) {
-        return Column(
-          children: [
-            tile,
-            const SizedBox(height: 32),
-          ],
-        );
-      }).toList(),
     );
   }
 }
